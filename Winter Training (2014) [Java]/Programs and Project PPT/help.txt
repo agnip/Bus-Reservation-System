@@ -1,0 +1,18 @@
+JFrame f = new JFrame("stackoverflow") { 
+  private Image backgroundImage = ImageIO.read(new File("background.jpg"));
+  public void paint( Graphics g ) { 
+    super.paint(g);
+    g.drawImage(backgroundImage, 0, 0, null);
+  }
+};
+==================================================
+try {
+    final Image backgroundImage = javax.imageio.ImageIO.read(new File(...));
+    setContentPane(new JPanel(new BorderLayout()) {
+        @Override public void paintComponent(Graphics g) {
+            g.drawImage(backgroundImage, 0, 0, null);
+        }
+    });
+} catch (IOException e) {
+    throw new RuntimeException(e);
+}
